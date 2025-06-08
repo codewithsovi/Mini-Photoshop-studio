@@ -23,11 +23,11 @@ h1{
     display: flex;
     justify-content: center;
 }
-form{
-    display: flex;
-    justify-content: center;
 
-    gap: 100px;
+div .isi{
+    height: 60vh;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 div .canvas{
@@ -35,6 +35,13 @@ div .canvas{
     justify-content: center;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 2rem;
+
+}
 .canvas{
-    height: 77%;
+    height: 90%;
 }

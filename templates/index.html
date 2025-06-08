@@ -10,58 +10,70 @@
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src=".../static/img/mps_logo.jpg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                MPS
-            </a>
+    <header>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src=".../static/img/mps_logo.jpg" alt="Logo" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    MPS
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content mt-5">
+        <div class="judul">
+            <h1>Mini Photoshop Studio!</h1>
         </div>
-    </nav>
-    <div class="content">
-        <h1>Mini Photoshop Studio!</h1>
-        <form action="" method="post">
-            <div class="input_gambar">
-                <div class="mb-3">
-                    <input class="form-control" type="file" id="formFile">
-                </div>
-            </div>
+
+        <div class="isi">
             <div>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="detail_gambar">Detail Informasi Gambar</option>
-                    <option value="histogram" >Histogram</option>
-                    <option value="grayscale">Grayscale</option>
-                    <option value="biner">Biner</option>
-                    <option value="negatif">Negatif</option>
-                    <option value="brightening">Brightening</option>
-                    <option value="translasi">Translasi</option>
-                    <option value="rotasi">Rotasi</option>
-                    <option value="flipping">Flipping</option>
-                    <option value="image_zooming">Image zooming</option>
-                    <option value="transformasi_citra">Transformasi Citra</option>
-                </select>
+                <form action="/" method="post" class="mt-4">
+                    <div class="input_gambar">
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                    <div>
+                        <select class="form-select" name="proses" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="detail_gambar">Detail Informasi Gambar</option>
+                            <option value="histogram">Histogram</option>
+                            <option value="grayscale">Grayscale</option>
+                            <option value="biner">Biner</option>
+                            <option value="negatif">Negatif</option>
+                            <option value="brightening">Brightening</option>
+                            <option value="translasi">Translasi</option>
+                            <option value="rotasi">Rotasi</option>
+                            <option value="flipping">Flipping</option>
+                            <option value="image_zooming">Image zooming</option>
+                            <option value="transformasi_citra">Transformasi Citra</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Proses</button>
+                    </div>
+                </form>
             </div>
-        </form>
-        <div class="canvas">
-            <img src="../static/img/canvas.jpeg" alt="canvas">
+
+            <div class="canvas mt-4">
+                <img src="{{ url_for('static', filename=gambar) }}" alt="canvas">
+            </div>
         </div>
     </div>
 
-    <footer>
+    <footer class="mt-5">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">MPS</h5>
                 <p class="card-text">Mini Photoshop Studio: Small in Size, Big in Power</p>
                 <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
             </div>
-           
+
         </div>
     </footer>
 </body>
 
-</html>
-
+<!-- js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
 </script>
@@ -69,5 +81,4 @@
     integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous">
 </script>
 
-
-
+</html>
