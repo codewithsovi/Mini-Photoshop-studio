@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div .content{
+    display: flex;
+
+    align-content: center;
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: flex;
+    justify-content: center;
+
+    gap: 100px;
+}
+
+div .canvas{
+    display: flex;
+    justify-content: center;
+}
+
+.canvas{
+    height: 77%;
+}
