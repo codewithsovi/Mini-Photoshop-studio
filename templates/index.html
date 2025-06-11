@@ -29,19 +29,27 @@
 
         <div class="isi">
             <div>
-                <form action="/" method="post" class="mt-4">
+                <!-- Form Upload Gambar -->
+                <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
                     <div class="input_gambar">
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="formFile" class="form-label">Unggah Gambar</label>
+                        <input class="form-control" name="gambar" type="file" id="formFile"
+                            onchange="document.getElementById('uploadForm').submit();">
                     </div>
+                </form>
+
+                <!-- Form Proses Gambar -->
+                <form action="/proses" method="post" class="mt-4">
                     <div>
                         <select class="form-select" name="proses" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
+                            <option selected disabled>Pilih Proses</option>
                             <option value="detail_gambar">Detail Informasi Gambar</option>
                             <option value="histogram">Histogram</option>
-                            <option value="grayscale">Grayscale</option>
-                            <option value="biner">Biner</option>
-                            <option value="negatif">Negatif</option>
+                            <option value="grayscale">Citra Grayscale</option>
+                            <option value="biner">Citra Biner</option>
+                            <option value="negatif">Citra Negatif</option>
                             <option value="brightening">Brightening</option>
+                            <option value="blur">Blur</option>
                             <option value="translasi">Translasi</option>
                             <option value="rotasi">Rotasi</option>
                             <option value="flipping">Flipping</option>
@@ -50,13 +58,25 @@
                         </select>
                     </div>
                     <div>
-                        <button class="btn btn-primary" type="submit">Proses</button>
+                        <button class="btn btn-primary mt-2" type="submit">Proses</button>
                     </div>
                 </form>
+                
+                <!-- Detail Gambar -->
+                {% if size and format and mode %}
+                <div class="mt-4">
+                    <h5>Detail Gambar:</h5>
+                    <ul>
+                        <li><strong>Ukuran:</strong> {{ size }}</li>
+                        <li><strong>Format:</strong> {{ format }}</li>
+                        <li><strong>Tipe:</strong> {{ mode }}</li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
 
             <div class="canvas mt-4">
-                <img src="{{ url_for('static', filename=gambar) }}" alt="canvas">
+                <img src="{{ url_for('static', filename = gambar) }}" alt="canvas">
             </div>
         </div>
     </div>
