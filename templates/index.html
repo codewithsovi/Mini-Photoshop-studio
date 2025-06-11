@@ -43,54 +43,66 @@
                     <div>
                         <select class="form-select" name="proses" aria-label="Default select example">
                             <option selected disabled>Pilih Proses</option>
-                            <option value="detail_gambar">Detail Informasi Gambar</option>
-                            <option value="histogram">Histogram</option>
-                            <option value="grayscale">Citra Grayscale</option>
+                            <option value="blur">Blur</option>
+                            <option value="brightening">Brightening</option>
                             <option value="biner">Citra Biner</option>
                             <option value="negatif">Citra Negatif</option>
-                            <option value="brightening">Brightening</option>
-                            <option value="blur">Blur</option>
-                            <option value="translasi">Translasi</option>
-                            <option value="rotasi">Rotasi</option>
-                            <option value="flipping">Flipping</option>
-                            <option value="image_zooming">Image zooming</option>
+                            <option value="grayscale">Citra Grayscale</option>
+                            <option value="detail_gambar">Detail Informasi Gambar</option>
+                            <option value="flipping_horizontal">Flipping Horizontal</option>
+                            <option value="flipping_vertikal">Flipping Vertikal</option>
+                            <option value="histogram">Histogram</option>
+                            <option value="rotasi">Rotasi </option>
                             <option value="transformasi_citra">Transformasi Citra</option>
+                            <option value="translasi">Translasi</option>
+                            <option value="zoom_in">Zoom In</option>
+                            <option value="zoom_out">Zoom Out</option>
                         </select>
                     </div>
                     <div>
                         <button class="btn btn-primary mt-2" type="submit">Proses</button>
                     </div>
                 </form>
-                
-                <!-- Detail Gambar -->
-                {% if size and format and mode %}
-                <div class="mt-4">
-                    <h5>Detail Gambar:</h5>
-                    <ul>
-                        <li><strong>Ukuran:</strong> {{ size }}</li>
-                        <li><strong>Format:</strong> {{ format }}</li>
-                        <li><strong>Tipe:</strong> {{ mode }}</li>
-                    </ul>
-                </div>
-                {% endif %}
-            </div>
 
+                <div class="informasi">
+                    <!-- Detail Gambar -->
+                    {% if size and format and mode %}
+                    <div class="mt-4">
+                        <h6>Detail Gambar:</h6>
+                        <ul>
+                            <li><strong>Ukuran:</strong> {{ size }}</li>
+                            <li><strong>Format:</strong> {{ format }}</li>
+                            <li><strong>Tipe:</strong> {{ mode }}</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <!-- detail pixel -->
+                    {% if pixels %}
+                    <div class="mt-4">
+                        <h6>Nilai Piksel :</h6>
+                        <ul>
+                            {% for px in pixels %}
+                            <li>{{ px }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- histogram -->
+
+            </div>
             <div class="canvas mt-4">
-                <img src="{{ url_for('static', filename = gambar) }}" alt="canvas">
+                <!-- <img src="{{ url_for('static', filename = gambar) }}" alt="canvas"> -->
+                {% if gambar != 'img/canvas.jpeg' %}
+                <img src="{{ url_for('static', filename = gambar) }}" alt="gambar diproses">
+                {% else %}
+                <img src="{{ url_for('static', filename = 'img/canvas.jpeg') }}" alt="canvas default">
+                {% endif %}
             </div>
         </div>
     </div>
-
-    <footer class="mt-5">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">MPS</h5>
-                <p class="card-text">Mini Photoshop Studio: Small in Size, Big in Power</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-            </div>
-
-        </div>
-    </footer>
 </body>
 
 <!-- js -->

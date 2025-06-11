@@ -42,6 +42,11 @@ def proses():
         size = img.size
         format = img.format
         mode = img.mode
+        pixel_values = list(img.getdata())
+
+    # Tampilkan 10 piksel pertama (untuk preview)
+        preview_pixels = pixel_values[:5]
+
         hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
     else:
         if proses == 'grayscale':
@@ -57,6 +62,12 @@ def proses():
         elif proses == 'brightening':
             enhancer = ImageEnhance.Brightness(img)
             img = enhancer.enhance(1.5)
+        elif proses == 'rotasi':
+            img = img.rotate(-90, expand=True)
+        elif proses == 'flipping_horizontal':
+            img = ImageOps.mirror(img)
+        elif proses == 'flipping_vertikal':
+            img = ImageOps.flip(img)
 
         # konversi
         if img.mode == 'RGBA':
@@ -70,7 +81,8 @@ def proses():
     if not hasil_path:
         hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
 
-    return render_template('index.html', gambar=hasil_path, size=size, format=format, mode=mode)
+    return render_template('index.html', gambar=hasil_path, size=size, format=format, mode=mode, pixels=preview_pixels)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)
