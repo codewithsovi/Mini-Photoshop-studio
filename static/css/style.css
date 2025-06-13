@@ -12,12 +12,14 @@ body {
 
     display: flex;
     flex-direction: column;
+    background-color: #B3C8CF;
 }
 
 div .content{
     display: flex;
 
     align-content: center;
+    background-color: #B3C8CF;
 }
 h1{
     display: flex;
@@ -40,11 +42,7 @@ form{
     flex-direction: column;
     
     gap: 2rem;
-
 }
-/* .canvas{
-    height: 90%;
-} */
 
 li {
   list-style-type: none;
@@ -54,4 +52,10 @@ div .informasi{
     display: flex;
     justify-content: space-between;
     gap: 3rem;
+}
+
+.histogram-img {
+    max-width: 300px;
+    width: 70%;
+    height: auto;
 }

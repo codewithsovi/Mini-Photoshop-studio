@@ -88,13 +88,22 @@
                         </ul>
                     </div>
                     {% endif %}
+
+                    <!-- histogram -->
+                    {% if histogram %}
+                    <div class="mt-3">
+                        <h6>Histogram:</h6>
+                        <img src="{{ url_for('static', filename = histogram) }}" alt="Histogram"
+                            class="img-fluid histogram-img">
+                    </div>
+                    {% endif %}
                 </div>
 
-                <!-- histogram -->
 
             </div>
+
+            <!-- gambar -->
             <div class="canvas mt-4">
-                <!-- <img src="{{ url_for('static', filename = gambar) }}" alt="canvas"> -->
                 {% if gambar != 'img/canvas.jpeg' %}
                 <img src="{{ url_for('static', filename = gambar) }}" alt="gambar diproses">
                 {% else %}
