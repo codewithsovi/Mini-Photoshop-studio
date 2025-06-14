@@ -67,6 +67,12 @@ def proses():
         elif proses == 'brightening':
             enhancer = ImageEnhance.Brightness(img)
             img = enhancer.enhance(1.5)
+        elif proses == 'zoom_in':
+            width, height = img.size
+            img = img.resize((int(width * 2.5), int(height * 2.5)))
+        elif proses == 'zoom_out':
+            width, height = img.size
+            img = img.resize((int(width * 0.3), int(height * 0.3)))
         elif proses == 'rotasi':
             img = img.rotate(-90, expand=True)
         elif proses == 'flipping_horizontal':
@@ -90,6 +96,7 @@ def proses():
 
             session['histogram_path'] = 'processed/histogram.png'
             hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
+        
 
         # konversi
         if img.mode == 'RGBA':
