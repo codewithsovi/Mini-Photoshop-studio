@@ -97,6 +97,26 @@ def proses():
             session['histogram_path'] = 'processed/histogram.png'
             hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
         
+        elif proses == 'frekuensi':
+            gray_img = ImageOps.grayscale(img)
+            np_img = np.array(gray_img)
+
+            f = np.fft.fft2(np_img)
+            fshift = np.fft.fftshift(f)
+            magnitude_spectrum = 20 * np.log(np.abs(fshift) + 1)
+
+            plt.figure(figsize=(6, 4))
+            plt.imshow(magnitude_spectrum, cmap='gray')
+            plt.title('Ranah Frekuensi (FFT)')
+            plt.axis('off')
+            plt.tight_layout()
+
+            freq_path = os.path.join(PROCESSED_FOLDER, 'frekuensi.png')
+            plt.savefig(freq_path)
+            plt.close()
+
+            session['frekuensi_path'] = 'processed/frekuensi.png'
+            hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
 
         # konversi
         if img.mode == 'RGBA':
@@ -111,8 +131,7 @@ def proses():
         hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
 
     return render_template('index.html', gambar=hasil_path, size=size, format=format, mode=mode, pixels=preview_pixels,
-    histogram=session.get('histogram_path'))
-
+    histogram=session.get('histogram_path'),  frekuensi=session.get('frekuensi_path'))
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)

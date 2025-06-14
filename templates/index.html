@@ -53,7 +53,7 @@
                             <option value="flipping_vertikal">Flipping Vertikal</option>
                             <option value="histogram">Histogram</option>
                             <option value="rotasi">Rotasi </option>
-                            <option value="transformasi_citra">Transformasi Citra</option>
+                            <option value="frekuensi">Ranah Frekuensi</option>
                             <option value="translasi">Translasi</option>
                             <option value="zoom_in">Zoom In</option>
                             <option value="zoom_out">Zoom Out</option>
@@ -88,8 +88,9 @@
                         </ul>
                     </div>
                     {% endif %}
+                </div>
 
-                    <!-- histogram -->
+                 <!-- histogram -->
                     {% if histogram %}
                     <div class="mt-3">
                         <h6>Histogram:</h6>
@@ -98,7 +99,14 @@
                     </div>
                     {% endif %}
 
-                </div>
+                    <!-- ranah frekuensi -->
+                    {% if frekuensi %}
+                    <div class="mt-3">
+                        <h6>Ranah Frekuensi (FFT):</h6>
+                        <img src="{{ url_for('static', filename = frekuensi) }}" alt="Ranah Frekuensi"
+                            class="img-fluid">
+                    </div>
+                    {% endif %}
             </div>
 
             <!-- gambar -->
