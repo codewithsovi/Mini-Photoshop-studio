@@ -90,23 +90,21 @@
                     {% endif %}
                 </div>
 
-                 <!-- histogram -->
-                    {% if histogram %}
-                    <div class="mt-3">
-                        <h6>Histogram:</h6>
-                        <img src="{{ url_for('static', filename = histogram) }}" alt="Histogram"
-                            class="img-fluid histogram-img">
-                    </div>
-                    {% endif %}
+                <!-- histogram -->
+                {% if histogram %}
+                <div class="mt-3">
+                    <h6>Histogram:</h6>
+                    <img src="{{ url_for('static', filename = histogram) }}" alt="Histogram"
+                        class="img-fluid histogram-img">
+                </div>
+                {% endif %}
 
-                    <!-- ranah frekuensi -->
-                    {% if frekuensi %}
-                    <div class="mt-3">
-                        <h6>Ranah Frekuensi (FFT):</h6>
-                        <img src="{{ url_for('static', filename = frekuensi) }}" alt="Ranah Frekuensi"
-                            class="img-fluid">
-                    </div>
-                    {% endif %}
+                <!-- ranah frekuensi -->
+                {% if frekuensi %}
+                <div class="mt-3">
+                    <img src="{{ url_for('static', filename = frekuensi) }}" alt="Frekuensi" class="img-fluid">
+                </div>
+                {% endif %}
             </div>
 
             <!-- gambar -->

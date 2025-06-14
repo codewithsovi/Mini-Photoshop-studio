@@ -16,7 +16,8 @@ os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 def index():
     gambar_path = session.get('gambar_path', 'img/canvas.jpeg')
     histogram = session.pop('histogram_path', None)
-    return render_template('index.html', gambar=gambar_path, histogram=histogram)
+    frekuensi = session.pop('frekuensi_path', None)
+    return render_template('index.html', gambar=gambar_path, histogram=histogram, frekuensi=frekuensi)
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -35,6 +36,7 @@ def proses():
     size = format = mode = None
     hasil_path = None
     preview_pixels = None
+    frekuensi_path = None
     path = os.path.join(UPLOAD_FOLDER, 'uploaded.jpg')
 
     if not os.path.exists(path):
@@ -96,27 +98,23 @@ def proses():
 
             session['histogram_path'] = 'processed/histogram.png'
             hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
-        
         elif proses == 'frekuensi':
-            gray_img = ImageOps.grayscale(img)
-            np_img = np.array(gray_img)
-
-            f = np.fft.fft2(np_img)
-            fshift = np.fft.fftshift(f)
+            gray = ImageOps.grayscale(img)
+            fft = np.fft.fft2(np.array(gray))
+            fshift = np.fft.fftshift(fft)
             magnitude_spectrum = 20 * np.log(np.abs(fshift) + 1)
 
             plt.figure(figsize=(6, 4))
             plt.imshow(magnitude_spectrum, cmap='gray')
-            plt.title('Ranah Frekuensi (FFT)')
+            plt.title('Ranah Frekuensi')
             plt.axis('off')
-            plt.tight_layout()
-
             freq_path = os.path.join(PROCESSED_FOLDER, 'frekuensi.png')
-            plt.savefig(freq_path)
+            plt.savefig(freq_path, bbox_inches='tight', pad_inches=0)
             plt.close()
 
             session['frekuensi_path'] = 'processed/frekuensi.png'
             hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
+            frekuensi_path = session['frekuensi_path']
 
         # konversi
         if img.mode == 'RGBA':
@@ -131,7 +129,7 @@ def proses():
         hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
 
     return render_template('index.html', gambar=hasil_path, size=size, format=format, mode=mode, pixels=preview_pixels,
-    histogram=session.get('histogram_path'),  frekuensi=session.get('frekuensi_path'))
+    histogram=session.get('histogram_path'), frekuensi=frekuensi_path)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)
