@@ -49,9 +49,7 @@ def proses():
         format = img.format
         mode = img.mode
         pixel_values = list(img.getdata())
-
         preview_pixels = pixel_values[:5]
-
         hasil_path = session.get('gambar_path', 'upload/uploaded.jpg')
     else:
         session.pop('histogram_path', None) 
